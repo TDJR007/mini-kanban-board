@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="board">
+    <div class="lanes">
+        <div class="swim-lane" id="todo-lane">
+            <div class="lane-header">
+                <h3>TODO</h3>
+                <form id="todo-form">
+                    <input type="text" id="todo-input" placeholder="Add a task" required>
+                    <button type="submit">ADD</button>
+                </form>
+            </div>
+        </div>
+        <div class="swim-lane" id="doing-lane">
+            <h3>DOING</h3>
+        </div>
+        <div class="swim-lane" id="done-lane">
+            <h3>DONE</h3>
+        </div>
+    </div>
+</div>
+
+    <script src="storage.js"></script>
+    <script src="drag.js"></script>
+    <script src="todo.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", loadTasks);
+    </script>
+</body>
+
+</html>
