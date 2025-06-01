@@ -28,7 +28,7 @@ No frameworks. No libraries. Just pure, sleek front-end power.
 
 ## 📸 A Glimpse of Cosmic Productivity
 
-![Screenshot](./MiniKanbanSample.png)
+![Screenshot](./assets/MiniKanbanSample.png)
 
 Background image by Benjamin Voros on Unsplash.
 Thank you for capturing the perfect night sky to match our dreams and deadlines.
