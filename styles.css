@@ -19,6 +19,86 @@ html, body {
 
 body {
   overflow: hidden;         /* No scrolling on body, only on board */
+  background: #0a0a15;     /* Dark space background */
+  position: relative;
+}
+
+/* ---- STAR BACKGROUND ---- */
+.star-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+/* ---- STAR STYLING ---- */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* ---- METEOR STYLING ---- */
+.meteor {
+  position: absolute;
+  background: linear-gradient(to right, 
+      rgba(255, 255, 255, 1), 
+      rgba(255, 255, 255, 0.8), 
+      transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+  opacity: 0; /* Default to hidden */
+  transform: rotate(215deg) translateX(0);
 }
 
 /* ---- BOARD CONTAINER ---- */
@@ -26,10 +106,8 @@ body {
   width: 100%;
   height: 100vh;
   overflow: auto;
-
-  background-image: url(assets/background.jpg);
-  background-position: center;
-  background-size: cover;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- FORM STYLING ---- */
@@ -58,7 +136,7 @@ body {
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   background: #333;
-  color: black;
+  color: white;
   font-weight: bold;
   font-size: 0.9rem;
   cursor: pointer;
@@ -93,6 +171,8 @@ body {
   min-height: 8rem;
   padding: 1rem;
   flex-shrink: 0;       /* Prevent shrinking to keep lanes uniform */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ---- LANE HEADER ---- */
@@ -115,13 +195,19 @@ body {
   border-radius: 4px;
   font-size: 16px;
   cursor: move;
+  transition: all 0.3s ease;
+}
+
+.task:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* ---- TASK DRAGGING STATE ---- */
 .is-dragging {
   scale: 1.05;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-  background: rgb(50, 50, 50);
+  background: rgba(50, 50, 50, 0.8);
   color: white;
 }
 
